@@ -16,7 +16,7 @@ overlay.style.cssText = `
 
 const svgImage = document.createElement('img');
 svgImage.id = 'svgImage';
-svgImage.src = 'https://github.com/19Friends/cusisurfing_preloader/preloader_svg.svg';
+svgImage.src = 'https://github.com/19Friends/cusisurfing_preloader/blob/1f70dd6dc9fd41e9c5bd21fc64c97c38cbb7b188/preloader_svg.svg';
 svgImage.style.cssText = `
     max-width: 100%;
     max-height: 100%;
