@@ -1,47 +1,57 @@
-// Create the overlay and SVG elements
-const overlay = document.createElement('div');
-overlay.id = 'loader';
-overlay.style.cssText = `
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.7);
-    z-index: 999;
-`;
+<style>
+    /* Keyframes for rotation */
+    @keyframes rotate {
+        from {
+            transform: rotate(0deg);
+        }
+        to {
+            transform: rotate(360deg);
+        }
+    }
 
-const svgImage = document.createElement('img');
-svgImage.id = 'svgImage';
-svgImage.src = 'https://cdn.jsdelivr.net/gh/19Friends/cusisurfing_preloader/preloader_svg.svg';
-svgImage.style.cssText = `
-    max-width: 100%;
-    max-height: 100%;
-    display: none;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-`;
-svgImage.style.display = 'none';
+    /* Style for the loader */
+    #loader {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.9);
+        z-index: 999;
+    }
 
-// Append the elements to the body
-document.body.appendChild(overlay);
-document.body.appendChild(svgImage);
+    #svgImage {
+        max-width: 100px;
+        max-height: 100px;
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1000;
+        animation: rotate 4s linear infinite;
+    }
 
-// Function to hide the overlay and display the SVG
-function hideOverlay() {
-    overlay.style.display = 'none';
-    svgImage.style.display = 'block';
-}
+    /* Style for the content */
+    #content {
+        display: none;
+        text-align: center;
+        padding: 20px;
+    }
+</style>
+<script>
+    function hideLoader() {
+        document.getElementById('loader').style.display = 'none';
+        document.getElementById('content').style.display = 'block';
+    }
+    
+    // Wait for the DOMContentLoaded event
+    document.addEventListener('DOMContentLoaded', hideLoader);
 
-
-// Add an event listener to hide the overlay when all external JS files are loaded
-document.addEventListener('DOMContentLoaded', hideOverlay);
-
-// Fallback: If all external resources are loaded and the DOMContentLoaded event doesn't fire,
-// we'll still hide the overlay when the window's load event is triggered.
-window.addEventListener('load', hideOverlay);
+    // Wait for the window load event as backup
+    window.addEventListener('load', hideLoader);
+    
+</script>
