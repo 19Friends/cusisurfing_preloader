@@ -16,7 +16,7 @@ overlay.style.cssText = `
 
 const svgImage = document.createElement('img');
 svgImage.id = 'svgImage';
-svgImage.src = 'https://cdn.jsdelivr.net/gh/19Friends/cusisurfing_preloader/preloader_svg.svg';
+svgImage.src = 'https://cdn.jsdelivr.net/gh/jasminder/flutter_preloader/preload.svg';
 svgImage.style.cssText = `
     max-width: 100%;
     max-height: 100%;
@@ -39,8 +39,19 @@ function hideOverlay() {
 }
 
 // Add an event listener to hide the overlay when all external JS files are loaded
-document.addEventListener('DOMContentLoaded', hideOverlay);
+document.addEventListener('DOMContentLoaded', () => {
+    // Replace the following lines with the actual code that loads your external JS files
+    // For demonstration purposes, we'll use a setTimeout to simulate loading external JS files.
+    setTimeout(hideOverlay, 100); // Replace with your actual loading code.
+});
 
 // Fallback: If all external resources are loaded and the DOMContentLoaded event doesn't fire,
 // we'll still hide the overlay when the window's load event is triggered.
 window.addEventListener('load', hideOverlay);
+
+// Add an event listener to hide the overlay when all external JS files are loaded
+// document.addEventListener('DOMContentLoaded', hideOverlay);
+
+// Fallback: If all external resources are loaded and the DOMContentLoaded event doesn't fire,
+// we'll still hide the overlay when the window's load event is triggered.
+// window.addEventListener('load', hideOverlay);
