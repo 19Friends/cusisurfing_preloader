@@ -1,4 +1,4 @@
-// Create the overlay
+// Create the overlay and SVG elements
 const overlay = document.createElement('div');
 overlay.id = 'loader';
 overlay.style.cssText = `
@@ -14,34 +14,28 @@ overlay.style.cssText = `
     z-index: 999;
 `;
 
-// Create the spinner with SpinKit's swing animation
-const spinner = document.createElement('div');
-spinner.className = 'sk-swing';
-spinner.style.cssText = `
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+const svgImage = document.createElement('img');
+svgImage.id = 'svgImage';
+svgImage.src = 'https://cdn.jsdelivr.net/gh/19Friends/cusisurfing_preloader/preloader_svg.svg';
+svgImage.style.cssText = `
+    max-width: 100%;
+    max-height: 100%;
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 `;
+svgImage.style.display = 'none';
 
-// Create the dots with specified colors
-const dot1 = document.createElement('div');
-const dot2 = document.createElement('div');
-dot1.className = dot2.className = 'sk-swing-dot';
-dot1.style.backgroundColor = '#8f1739';
-dot2.style.backgroundColor = '#d8005b';
-
-// Append the dots to the spinner
-spinner.appendChild(dot1);
-spinner.appendChild(dot2);
-
-// Append the overlay and spinner to the body
+// Append the elements to the body
 document.body.appendChild(overlay);
-document.body.appendChild(spinner);
+document.body.appendChild(svgImage);
 
-// Function to hide the overlay and display the spinner
+// Function to hide the overlay and display the SVG
 function hideOverlay() {
     overlay.style.display = 'none';
-    spinner.style.display = 'block';
+    svgImage.style.display = 'block';
 }
 
 // Add an event listener to hide the overlay when all external JS files are loaded
